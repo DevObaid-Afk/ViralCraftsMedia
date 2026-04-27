@@ -65,6 +65,10 @@ body {
     @apply bg-brand-gradient bg-clip-text text-transparent;
   }
 
+  .hero-title {
+    perspective: 900px;
+  }
+
   .glow-button {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-electric/40 bg-electric px-6 py-3 font-heading text-base font-bold text-ink shadow-glow transition duration-300 hover:-translate-y-1 hover:bg-aurora focus:outline-none focus:ring-2 focus:ring-electric focus:ring-offset-2 focus:ring-offset-ink;
   }
@@ -115,6 +119,117 @@ body {
 
 .magnetic-card:hover {
   transform: translateY(-10px) rotateX(4deg) rotateY(-5deg);
+}
+
+.hero-title-word {
+  isolation: isolate;
+  text-shadow: 0 18px 55px rgba(95, 251, 241, 0.12);
+}
+
+.hero-title-word::before,
+.hero-title-word::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 120ms ease, transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 120ms ease;
+}
+
+.hero-title-word::before {
+  color: #5ffbf1;
+  transform: translate3d(-4px, 0, 0);
+}
+
+.hero-title-word::after {
+  color: #f97316;
+  transform: translate3d(4px, 0, 0);
+}
+
+.hero-title-letter {
+  background-image: linear-gradient(135deg, #5ffbf1 0%, #a3e635 42%, #f97316 100%);
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  transform-origin: 50% 75%;
+  transition:
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 90ms ease;
+  transition-delay: 0ms;
+}
+
+.hero-title-scan {
+  position: absolute;
+  inset: 14% -4% 8%;
+  pointer-events: none;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.hero-title-scan::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-110%);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 12px,
+      rgba(95, 251, 241, 0.32) 12px 13px,
+      transparent 13px 24px
+    ),
+    linear-gradient(90deg, transparent, rgba(163, 230, 53, 0.46), transparent);
+}
+
+.group\/title:hover .hero-title-word::before,
+.group\/title:hover .hero-title-word::after {
+  opacity: 0.72;
+  filter: blur(0.4px);
+}
+
+.group\/title:hover .hero-title-word::before {
+  transform: translate3d(-10px, -2px, 0) skewX(-5deg);
+}
+
+.group\/title:hover .hero-title-word::after {
+  transform: translate3d(10px, 2px, 0) skewX(5deg);
+}
+
+.group\/title:hover .hero-title-letter {
+  filter: drop-shadow(0 0 18px rgba(95, 251, 241, 0.28));
+  transform: translateX(calc((var(--i) - 5) * -1.2px)) rotateY(-12deg);
+}
+
+.group\/title:hover .hero-title-letter:nth-child(3n) {
+  background-image: linear-gradient(135deg, #5ffbf1, #ffffff);
+  transform: translateY(-9px) rotateZ(-2deg) rotateY(-18deg);
+}
+
+.group\/title:hover .hero-title-letter:nth-child(3n + 1) {
+  background-image: linear-gradient(135deg, #a3e635, #ffffff);
+  transform: translateY(7px) rotateZ(2deg) rotateY(14deg);
+}
+
+.group\/title:hover .hero-title-letter:nth-child(3n + 2) {
+  background-image: linear-gradient(135deg, #f97316, #ffffff);
+  transform: translateY(-3px) translateX(5px) rotateZ(1deg);
+}
+
+.group\/title:hover .hero-title-scan {
+  opacity: 1;
+}
+
+.group\/title:hover .hero-title-scan::before {
+  animation: titleSignalSweep 460ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes titleSignalSweep {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(110%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -2,6 +2,7 @@ import logo from '../assets/logo.png';
 
 function Hero() {
   const metrics = ['Reels systems', 'Lead funnels', 'Trend response', 'Brand recall', 'Local demand', 'Creator hooks'];
+  const titleLetters = 'VIRAL CRAFT'.split('');
 
   return (
     <section id="home" className="relative min-h-screen overflow-hidden bg-page-radial pt-28">
@@ -17,8 +18,19 @@ function Hero() {
       <div className="container-shell relative grid min-h-[calc(100vh-7rem)] items-center gap-12 pb-16 lg:grid-cols-[1.05fr_.95fr]">
         <div className="max-w-4xl">
           <p className="inline-flex rounded-full border border-white/10 bg-white/10 px-4 py-2 font-accent text-sm font-bold uppercase tracking-[0.24em] text-electric backdrop-blur-xl">Founder: Rayyan Ansari | Since April 2023</p>
-          <h1 className="mt-6 font-heading text-6xl font-bold leading-[0.92] tracking-normal text-white sm:text-7xl lg:text-8xl">
-            <span className="gradient-text">VIRAL CRAFT</span>
+          <h1 className="hero-title group/title mt-6 font-heading text-6xl font-bold leading-[0.92] tracking-normal text-white sm:text-7xl lg:text-8xl" aria-label="VIRAL CRAFT Media">
+            <span className="hero-title-word relative inline-flex flex-wrap" aria-hidden="true" data-text="VIRAL CRAFT">
+              {titleLetters.map((letter, index) => (
+                <span
+                  key={`${letter}-${index}`}
+                  className={letter === ' ' ? 'w-[0.32em]' : 'hero-title-letter'}
+                  style={{ '--i': index }}
+                >
+                  {letter}
+                </span>
+              ))}
+              <span className="hero-title-scan" />
+            </span>
             <span className="mt-2 block text-4xl text-white sm:text-5xl lg:text-6xl">Media</span>
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">
