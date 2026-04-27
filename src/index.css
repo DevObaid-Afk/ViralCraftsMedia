@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --brand-electric: #5ffbf1;
+  --brand-signal: #f97316;
+  --brand-aurora: #a3e635;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #070a13;
+  color: #f8fafc;
+  font-family:
+    Manrope,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  overflow-x: hidden;
+}
+
+@media (pointer: fine) {
+  body,
+  button,
+  a,
+  input,
+  textarea {
+    cursor: none;
+  }
+}
+
+@media (pointer: coarse) {
+  body,
+  button,
+  a,
+  input,
+  textarea {
+    cursor: auto;
+  }
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .glass-panel {
+    @apply border border-white/10 bg-white/[0.07] shadow-glow backdrop-blur-2xl;
+  }
+
+  .gradient-text {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+
+  .glow-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-electric/40 bg-electric px-6 py-3 font-heading text-base font-bold text-ink shadow-glow transition duration-300 hover:-translate-y-1 hover:bg-aurora focus:outline-none focus:ring-2 focus:ring-electric focus:ring-offset-2 focus:ring-offset-ink;
+  }
+
+  .ghost-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 font-heading text-base font-bold text-white transition duration-300 hover:-translate-y-1 hover:border-signal/70 hover:bg-signal/15 focus:outline-none focus:ring-2 focus:ring-signal focus:ring-offset-2 focus:ring-offset-ink;
+  }
+}
+
+.reveal {
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+  will-change: opacity, transform;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    var(--brand-electric),
+    var(--brand-signal)
+  );
+  opacity: 0.45;
+  animation: float 7s ease-in-out infinite;
+}
+
+.motion-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 16%,
+    black 78%,
+    transparent
+  );
+}
+
+.magnetic-card {
+  transform-style: preserve-3d;
+}
+
+.magnetic-card:hover {
+  transform: translateY(-10px) rotateX(4deg) rotateY(-5deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
