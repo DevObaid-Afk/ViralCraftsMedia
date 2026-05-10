@@ -29,16 +29,24 @@ const lanes = [
 
 function About() {
   const sectionRef = useRef(null);
-  const [progress, setProgress] = useState(0);
+  const containerRef = useRef(null);
+  const trackRef = useRef(null);
+  const [scrollState, setScrollState] = useState({ progress: 0, maxShift: 0, startOffset: 0 });
 
   useEffect(() => {
     const update = () => {
       const section = sectionRef.current;
+      const container = containerRef.current;
+      const track = trackRef.current;
       if (!section) return;
       const rect = section.getBoundingClientRect();
       const scrollable = rect.height - window.innerHeight;
       const raw = Math.min(Math.max(-rect.top / scrollable, 0), 1);
-      setProgress(Number.isFinite(raw) ? raw : 0);
+      const progress = Number.isFinite(raw) ? raw : 0;
+      const maxShift = container && track ? Math.max(track.scrollWidth - container.clientWidth, 0) : 0;
+      const startOffset = container ? Math.min(container.clientWidth * 0.12, 240) : 0;
+
+      setScrollState({ progress, maxShift, startOffset });
     };
 
     update();
@@ -50,19 +58,19 @@ function About() {
     };
   }, []);
 
-  const x = `translateX(${12 - progress * 48}%)`;
+  const x = `translateX(${scrollState.startOffset - scrollState.progress * (scrollState.maxShift + scrollState.startOffset)}px)`;
 
   return (
     <section id="about" ref={sectionRef} className="relative h-[220vh] bg-ink">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden bg-page-radial">
         <div className="motion-grid absolute inset-0 opacity-50" />
-        <div className="container-shell relative">
+        <div ref={containerRef} className="container-shell relative">
           <div className="mb-10 max-w-3xl">
             <p className="font-accent text-sm font-bold uppercase tracking-[0.32em] text-electric">Productized Growth System</p>
             <h2 className="mt-3 font-heading text-4xl font-bold text-white sm:text-5xl">Not random posting. A repeatable content machine.</h2>
           </div>
 
-          <div className="flex w-[1780px] gap-6 transition-transform duration-200 ease-out will-change-transform lg:w-[2050px]" style={{ transform: x }}>
+          <div ref={trackRef} className="flex w-max gap-6 transition-transform duration-200 ease-out will-change-transform" style={{ transform: x }}>
             <div className="glass-panel relative flex w-[380px] shrink-0 flex-col justify-between overflow-hidden rounded-3xl border-electric/25 bg-white/[0.09] p-7 sm:w-[460px]">
               <div className="absolute -right-14 -top-16 h-40 w-40 rounded-full bg-brand-gradient opacity-25 blur-2xl" />
               <div className="absolute inset-x-7 top-0 h-px bg-brand-gradient opacity-70" />
