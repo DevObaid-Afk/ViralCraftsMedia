@@ -15,6 +15,8 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-color: #5ffbf1 #070a13;
+  scrollbar-width: thin;
 }
 
 body {
@@ -50,6 +52,29 @@ body {
   textarea {
     cursor: auto;
   }
+}
+
+.native-cursor,
+.native-cursor * {
+  cursor: auto;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070a13;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid #070a13;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #5ffbf1 0%, #a3e635 42%, #f97316 100%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #f97316 0%, #a3e635 48%, #5ffbf1 100%);
 }
 
 @layer components {

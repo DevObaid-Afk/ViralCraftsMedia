@@ -63,11 +63,16 @@ function About() {
           </div>
 
           <div className="flex w-[1780px] gap-6 transition-transform duration-200 ease-out will-change-transform lg:w-[2050px]" style={{ transform: x }}>
-            <div className="glass-panel flex w-[380px] shrink-0 flex-col justify-between rounded-3xl p-7 sm:w-[460px]">
-              <p className="text-lg leading-8 text-slate-300">
-                VIRAL CRAFT Media runs like a growth product team: strategy sprints, creative testing, content packaging, audience behavior analysis, and lead-focused iteration.
+            <div className="glass-panel relative flex w-[380px] shrink-0 flex-col justify-between overflow-hidden rounded-3xl border-electric/25 bg-white/[0.09] p-7 sm:w-[460px]">
+              <div className="absolute -right-14 -top-16 h-40 w-40 rounded-full bg-brand-gradient opacity-25 blur-2xl" />
+              <div className="absolute inset-x-7 top-0 h-px bg-brand-gradient opacity-70" />
+              <p className="relative font-heading text-3xl font-semibold leading-tight text-white">
+                Premium content direction for brands that want to look trusted before they ever pitch.
               </p>
-              <div className="mt-8 grid grid-cols-3 gap-3">
+              <p className="relative mt-5 text-lg leading-8 text-slate-300">
+                From celebrity-grade creatives to conversion-focused campaigns, we shape every asset to make the brand feel sharper, more credible, and easier to remember.
+              </p>
+              <div className="relative mt-8 grid grid-cols-3 gap-3">
                 {['Plan', 'Craft', 'Scale'].map((item) => (
                   <div key={item} className="rounded-2xl border border-white/10 bg-ink/55 p-4 text-center">
                     <span className="font-heading text-lg text-electric">{item}</span>

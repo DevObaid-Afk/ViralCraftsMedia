@@ -40,7 +40,7 @@ export const projects = [
   }
 ];
 
-const projectMediaModules = import.meta.glob('../../VCM/**/*.{mp4,jpg,jpeg,png,webp}', {
+const projectMediaModules = import.meta.glob('../assets/projects/**/*.{mp4,jpg,jpeg,png,webp}', {
   eager: true,
   query: '?url',
   import: 'default'
@@ -50,22 +50,49 @@ const mediaProjectDetails = {
   Cafe: {
     icon: 'fa-solid fa-mug-hot',
     title: 'Cafe Content Reel',
-    text: 'Short-form cafe edits shaped for product moments, atmosphere, and daily social engagement.'
+    texts: [
+      'Built for cafe brands that want the same polished content standard used for artists, creators, and premium campaigns.',
+      'A brand-focused edit that helps cafes look consistent, polished, and ready for stronger social media campaigns.',
+      'Designed to give cafe brands reusable content that improves perception, supports promotions, and keeps the feed active.'
+    ]
   },
   RealEstate: {
     icon: 'fa-solid fa-building',
     title: 'Real Estate Showcase Reel',
-    text: 'Property-focused video edits built to present spaces clearly and keep viewers moving through the listing.'
+    texts: [
+      'Created for real estate brands that need listings to look premium, trustworthy, and easy to present across social platforms.',
+      'A polished property edit that brings celebrity-campaign finishing standards into real estate brand presentation.',
+      'Designed to help real estate brands communicate value faster, improve listing appeal, and stand out in a crowded market.'
+    ]
   },
   'Event Reel': {
     icon: 'fa-solid fa-clapperboard',
     title: 'Event Highlight Reel',
-    text: 'Fast-paced event coverage edited for social reach, recap value, and brand recall.'
+    texts: [
+      'A recap asset that helps brands extend event value with the kind of polish expected from artist and star-led moments.',
+      'Created so brands can turn event footage into proof of activity, community, and momentum on social media.',
+      'A highlight edit that gives brands a polished campaign asset for announcements, recaps, and future promotion.'
+    ]
   },
   "Post's": {
     icon: 'fa-solid fa-image',
     title: 'Social Media Post Design',
-    text: 'Feed-ready post creatives designed to keep campaign visuals consistent across brand channels.'
+    titles: [
+      'Rahul Vaidya',
+      'DJ Ganesh',
+      'Bhaven Dhanak',
+      'Dr. Sanket Bhosale & Sugandha Mishra',
+      'Arunita Kanjilal',
+      'Shaarib & Toshi'
+    ],
+    texts: [
+      'Singer and performer known for powerful live shows and a strong fan following.',
+      'DJ and live performer recognized for high-energy sets and event crowd engagement.',
+      'Playback singer and performer featured for corporate and live event appearances.',
+      'Celebrity duo known for comedy, television, and live entertainment performances.',
+      'Singer and performer recognized for her expressive voice and public event presence.',
+      'Playback singer duo known for Bollywood music, live shows, and stage performances.'
+    ]
   }
 };
 
@@ -90,7 +117,8 @@ export const mediaProjects = Object.entries(projectMediaModules)
 
     return {
       ...details,
-      title: `${details.title} ${categoryCount}`,
+      title: details.titles?.[categoryCount - 1] ?? `${details.title} ${categoryCount}`,
+      text: details.texts?.[(categoryCount - 1) % details.texts.length] ?? details.text,
       source,
       type: getMediaType(path)
     };

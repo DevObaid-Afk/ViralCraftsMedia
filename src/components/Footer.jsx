@@ -6,6 +6,7 @@ function Footer() {
     { label: 'Goal', href: '/#goal' },
     { label: 'Projects', href: '/projects' },
     { label: 'About', href: '/#about' },
+    { label: 'Founder', href: '/founder' },
     { label: 'Reviews', href: '/#reviews' },
     { label: 'Contact', href: '/#contact' }
   ];

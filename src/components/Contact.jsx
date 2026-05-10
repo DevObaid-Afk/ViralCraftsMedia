@@ -27,10 +27,30 @@ function Contact() {
   };
 
   const info = [
-    ['fa-solid fa-envelope', 'Email', 'hello@viralcraftmedia.com'],
-    ['fa-solid fa-phone', 'Phone', '+91 98765 43210'],
-    ['fa-brands fa-whatsapp', 'WhatsApp', '+91 98765 43210'],
-    ['fa-solid fa-location-dot', 'Location', 'India, serving brands globally']
+    {
+      icon: 'fa-solid fa-envelope',
+      label: 'Email',
+      value: 'viralcraft@media.com',
+      href: 'mailto:viralcraft@media.com'
+    },
+    {
+      icon: 'fa-solid fa-phone',
+      label: 'Phone',
+      value: '+91 98679 50328',
+      href: 'tel:+919867950328'
+    },
+    {
+      icon: 'fa-brands fa-whatsapp',
+      label: 'WhatsApp',
+      value: '+91 98679 50328',
+      href: 'https://wa.me/919867950328'
+    },
+    {
+      icon: 'fa-solid fa-location-dot',
+      label: 'Location',
+      value: 'India, serving brands globally',
+      href: 'https://www.google.com/maps/search/?api=1&query=India'
+    }
   ];
 
   return (
@@ -60,12 +80,12 @@ function Contact() {
         </form>
 
         <div className="grid gap-4">
-          {info.map(([icon, label, value]) => (
-            <div key={label} className="glass-panel rounded-2xl p-5">
+          {info.map(({ icon, label, value, href }) => (
+            <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined} className="rounded-2xl border border-white/10 bg-white/[0.07] p-5 backdrop-blur-2xl transition duration-300 hover:border-electric/40 hover:bg-white/[0.09] focus:outline-none focus:ring-2 focus:ring-electric focus:ring-offset-2 focus:ring-offset-ink">
               <i className={`${icon} text-2xl text-electric`} aria-hidden="true" />
               <h3 className="mt-3 font-heading text-xl text-white">{label}</h3>
               <p className="mt-1 text-slate-300">{value}</p>
-            </div>
+            </a>
           ))}
         </div>
       </div>
