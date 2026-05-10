@@ -83,7 +83,7 @@ function ProjectsPage() {
                 <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-gradient text-2xl text-ink shadow-glow transition duration-500 group-hover:rotate-6 group-hover:scale-110">
                   <i className={project.icon} aria-hidden="true" />
                 </div>
-                <h1 className="font-heading text-2xl font-semibold text-white">{project.title}</h1>
+                <h3 className="font-heading text-2xl font-semibold text-white">{project.title}</h3>
                 <p className="mt-3 leading-7 text-slate-300">{project.text}</p>
                 <ProjectMedia project={project} />
               </article>

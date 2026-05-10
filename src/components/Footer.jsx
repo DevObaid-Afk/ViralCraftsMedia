@@ -1,7 +1,14 @@
 import logo from '../assets/logo.png';
 
 function Footer() {
-  const quickLinks = ['Home', 'Goal', 'Projects', 'About', 'Reviews', 'Contact'];
+  const quickLinks = [
+    { label: 'Home', href: '/#home' },
+    { label: 'Goal', href: '/#goal' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'About', href: '/#about' },
+    { label: 'Reviews', href: '/#reviews' },
+    { label: 'Contact', href: '/#contact' }
+  ];
   const services = ['Social Media Marketing', 'Content Strategy', 'Reels Production', 'Lead Generation'];
   const socials = [
     ['Instagram', 'fa-brands fa-instagram'],
@@ -19,7 +26,7 @@ function Footer() {
           <h2 className="mt-4 font-heading text-2xl text-white">VIRAL CRAFT <span className="text-electric">Media</span></h2>
           <p className="mt-3 max-w-sm text-slate-400">Premium digital growth for brands that want sharper content and stronger visibility.</p>
         </div>
-        <FooterList title="Quick Links" items={quickLinks.map((item) => ({ label: item, href: `#${item.toLowerCase() === 'home' ? 'home' : item.toLowerCase()}` }))} />
+        <FooterList title="Quick Links" items={quickLinks} />
         <FooterList title="Services" items={services.map((item) => ({ label: item, href: '#contact' }))} />
         <div>
           <h3 className="font-heading text-xl text-white">Social</h3>

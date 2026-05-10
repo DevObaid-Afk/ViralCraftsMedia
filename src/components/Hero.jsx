@@ -38,7 +38,7 @@ function Hero() {
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <a href="#contact" className="glow-button">Grow Your Brand <i className="fa-solid fa-arrow-right" aria-hidden="true" /></a>
-            <a href="#projects" className="ghost-button">View Projects <i className="fa-solid fa-layer-group" aria-hidden="true" /></a>
+            <a href="/projects" className="ghost-button">View Projects <i className="fa-solid fa-layer-group" aria-hidden="true" /></a>
           </div>
         </div>
 

@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import logo from '../assets/logo.png';
 
 const links = [
-  { href: '#home', label: 'Home' },
-  { href: '#goal', label: 'Goal' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#about', label: 'About' },
-  { href: '#reviews', label: 'Reviews' },
-  { href: '#contact', label: 'Contact' }
+  { href: '/#home', label: 'Home' },
+  { href: '/#goal', label: 'Goal' },
+  { href: '/projects', label: 'Projects', icon: 'fa-solid fa-caret-up' },
+  { href: '/#about', label: 'About' },
+  { href: '/#reviews', label: 'Reviews' },
+  { href: '/#contact', label: 'Contact' }
 ];
 
 function Navbar() {
@@ -32,7 +32,7 @@ function Navbar() {
       <div className="fixed left-0 top-0 z-50 h-1 bg-brand-gradient transition-all duration-150" style={{ width: `${progress}%` }} />
       <header className={`fixed inset-x-0 top-0 z-40 transition duration-300 ${scrolled ? 'border-b border-white/10 bg-ink/75 backdrop-blur-2xl' : 'bg-transparent'}`}>
         <nav className="container-shell flex min-h-20 items-center justify-between" aria-label="Primary navigation">
-          <a href="#home" className="flex items-center gap-3" aria-label="VIRAL CRAFT Media home">
+          <a href="/#home" className="flex items-center gap-3" aria-label="VIRAL CRAFT Media home">
             <img src={logo} alt="VIRAL CRAFT Media logo" className="h-11 w-11 rounded-xl object-cover" loading="eager" />
             <span className="font-heading text-xl font-bold leading-none text-white">VIRAL CRAFT <span className="block text-sm text-electric">Media</span></span>
           </a>
@@ -41,12 +41,13 @@ function Navbar() {
             {links.map((link) => (
               <a key={link.href} href={link.href} className="group relative font-heading text-sm font-semibold text-slate-200 transition hover:text-white">
                 {link.label}
+                {link.icon && <i className={`${link.icon} ml-2 text-electric`} aria-hidden="true" />}
                 <span className="absolute -bottom-2 left-0 h-0.5 w-0 bg-brand-gradient transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </div>
 
-          <a href="#contact" className="hidden rounded-full bg-electric px-5 py-2.5 font-heading font-bold text-ink transition hover:-translate-y-0.5 hover:bg-aurora hover:shadow-glow lg:inline-flex">
+          <a href="/#contact" className="hidden rounded-full bg-electric px-5 py-2.5 font-heading font-bold text-ink transition hover:-translate-y-0.5 hover:bg-aurora hover:shadow-glow lg:inline-flex">
             Start Growth
           </a>
 
@@ -67,6 +68,7 @@ function Navbar() {
               {links.map((link) => (
                 <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 font-heading text-lg text-white hover:bg-white/10">
                   {link.label}
+                  {link.icon && <i className={`${link.icon} ml-2 text-electric`} aria-hidden="true" />}
                 </a>
               ))}
             </div>
